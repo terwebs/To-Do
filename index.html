@@ -7,22 +7,34 @@
     <title>To-Do</title>
 </head>
 <body>
+    <h1 class="container_title">Your To-Do list</h1>
     <div class="container">
-        <h1 class="container_title">Your To-Do list</h1>
-        <form action="form" class="form">
-            <input type="text" class="input-task" placeholder="Todo...">
-            <button class="form_button">Add To-do</button>
-        </form>
+
         <div class="list">
-            <div class="todo-item">
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Adipisci ad a dolores fuga ipsam iusto aliquid id eum libero tempore alias vero nihil consequatur quos, quibusdam pariatur omnis minima perferendis!</p>
-                <span class="delete">x</span>
-            </div>
-            <div class="todo-item">
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Adipisci ad a dolores fuga ipsam iusto aliquid id eum libero tempore alias vero nihil consequatur quos, quibusdam pariatur omnis minima perferendis!</p>
-                <span class="delete">x</span>
+            <div class="list-container">
+                <div class="todo-item">
+                    <input type="checkbox" class="todo-item_done">
+                    <p class="todo-content">Lavar la ropa</p>
+                    <span class="delete">x</span>
+                </div>
+                <div class="todo-item">
+                    <input type="checkbox" class="todo-item_done">
+                    <p class="todo-content">Lavar sawrdwerewrew la ropa</p>
+                    <span class="delete">x</span>
+                </div>
             </div>
         </div>
+        <div class="completed-tasks">
+        </div>
+        
+        <div class="form-div">
+            <form action="" class="form">
+                <input type="text" class="input-task" placeholder="Add To-Do..." required>
+                <button class="form_button">+</button>
+            </form>
+        </div>
+      
+        
     </div>
     <script src="app.js"></script>
 </body>
