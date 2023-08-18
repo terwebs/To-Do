@@ -3,6 +3,7 @@ const list = document.querySelector('.list-container')
 const input = document.querySelector('.input-task')
 const completed = document.querySelector(".completed-tasks")
 const btn = document.querySelector(".form_button")
+const completedSeparator = document.querySelector(".visible")
 
 let id = 0;
 const todoArray = []
@@ -15,7 +16,6 @@ form.addEventListener('submit', (e) => {
   console.log(todoItem.id)
   renderTask(todoItem)
   clearInput()
-  Storage.addToStorage(todoArray)
 })
 
 class Todo {
@@ -101,11 +101,12 @@ function checkItemCompleted () {
 }
 
 function checkCompleteditems() {
-  if(completed.childElementCount > 0 ){
+  if(completed.childElementCount > 1 ){
     completed.classList.add("show-completed")
-    console.log(completed.childElementCount)
+    completedSeparator.classList.replace("hidden","visible")
   } else {
     completed.classList.remove("show-completed")
+    completedSeparator.classList.replace("visible","hidden")
   }
 }
 

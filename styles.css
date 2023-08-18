@@ -11,6 +11,13 @@ body{
 
 }
 
+.main{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 .container{
   background-color: #1c1c1c;
   border-radius: 8px;
@@ -43,14 +50,15 @@ body{
 .todo-item{
   display: flex;
   border-bottom: solid 0.5px rgba(255, 255, 255, 0.3);
-
   align-items: center;
   gap: 10px;
+  overflow:unset;
 }
 
 .todo-content{
   flex: 1;
   color: lightgray;
+  overflow-x:hidden;
 }
 
 .checked{
@@ -119,4 +127,30 @@ input[type=checkbox] {
   background-color: rgba(255, 255, 255, 0.1);
   margin-left: 16px;
   margin-right: 16px;
+}
+
+@media screen and (max-width: 600px) {
+  .container{
+    width: 360px;
+  }
+
+  .container_title{
+    font-size: 2rem;
+  }
+}
+
+.hidden{
+  background-color:#1c1c1c;
+  color: #1c1c1c;
+  border: none;
+  outline: none;
+  height: 0;
+  width: 0;
+}
+
+.visible{
+  background-color: #788cde;
+  text-align: center;
+  color: white;
+  height: 20px;
 }
