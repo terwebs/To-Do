@@ -2,18 +2,20 @@ const form = document.querySelector('.form')
 const list = document.querySelector('.list-container')
 const input = document.querySelector('.input-task')
 const completed = document.querySelector(".completed-tasks")
-let id = 0;
+const btn = document.querySelector(".form_button")
 
+let id = 0;
 const todoArray = []
 
 form.addEventListener('submit', (e) => {
   e.preventDefault()
-  id++
   const todoItem = new Todo(id, input.value)
+  id++
   todoArray.push(todoItem)
-  console.log(todoArray)
+  console.log(todoItem.id)
   renderTask(todoItem)
   clearInput()
+  Storage.addToStorage(todoArray)
 })
 
 class Todo {
@@ -34,6 +36,7 @@ function renderTask (todoItem) {
 
   todo.appendChild(checkComplete)
   task.innerText = todoItem.task
+  task.id = todoItem.id
   task.classList.add("todo-content")
   todo.appendChild(task)
 
@@ -52,12 +55,14 @@ function clearInput () {
 function removeItem () {
   list.addEventListener('click', (e) => {
     if (e.target.classList.contains('delete')) {
+      todoArray.splice((e.target.previousElementSibling.id),1)
       e.target.parentElement.remove()
       console.log('removed')
     }
   })
   completed.addEventListener('click', (e) => {
     if (e.target.classList.contains('delete')) {
+      todoArray.splice((e.target.previousElementSibling.id),1)
       e.target.parentElement.remove()
       console.log('removed')
     }
@@ -96,7 +101,7 @@ function checkItemCompleted () {
 }
 
 function checkCompleteditems() {
-  if(completed.childElementCount >0 ){
+  if(completed.childElementCount > 0 ){
     completed.classList.add("show-completed")
     console.log(completed.childElementCount)
   } else {
@@ -107,5 +112,3 @@ function checkCompleteditems() {
 removeItem()
 checkItem ()
 checkItemCompleted()
-
-

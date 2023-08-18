@@ -8,6 +8,7 @@ body{
   justify-content: center;
   flex-direction: column;
   align-items: center;
+
 }
 
 .container{
@@ -21,6 +22,7 @@ body{
 }
 
 .container_title{
+  margin-top: 100px;
   color: #5868aa;
   font-size: 3rem;
   font-weight: 900;
@@ -59,6 +61,8 @@ body{
 .delete{
   color: #788cde;
   font-size: 20px;
+  padding-right: 8px;
+  padding-left: 8px;
 }
 
 .delete:hover{
@@ -78,13 +82,15 @@ body{
   margin-left: 0;
   background-color: #292929;
   color: white;
-  border: none;
+  border: #292929 1px solid;
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
+  letter-spacing: 2px;
 }
 
 .input-task:focus{
   outline: none;
+  border-bottom: #5868aa 1px solid;
 }
 
 input[type=checkbox] {
@@ -110,7 +116,7 @@ input[type=checkbox] {
 }
 
 .show-completed{
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.1);
   margin-left: 16px;
   margin-right: 16px;
 }
