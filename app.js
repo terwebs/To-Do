@@ -58,6 +58,7 @@ function removeItem () {
       todoArray.splice((e.target.previousElementSibling.id),1)
       e.target.parentElement.remove()
       console.log('removed')
+      checkCompleteditems()
     }
   })
   completed.addEventListener('click', (e) => {
@@ -65,6 +66,7 @@ function removeItem () {
       todoArray.splice((e.target.previousElementSibling.id),1)
       e.target.parentElement.remove()
       console.log('removed')
+      checkCompleteditems()
     }
   })
 }
