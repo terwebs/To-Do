@@ -3,10 +3,10 @@ const list = document.querySelector('.list-container')
 const input = document.querySelector('.input-task')
 const completed = document.querySelector(".completed-tasks")
 const btn = document.querySelector(".form_button")
-const completedSeparator = document.querySelector(".visible")
+const completedSeparator = document.querySelector(".hidden")
 
-let id = 0;
-const todoArray = []
+let id = 1;
+let todoArray = []
 
 form.addEventListener('submit', (e) => {
   e.preventDefault()
@@ -15,6 +15,7 @@ form.addEventListener('submit', (e) => {
   todoArray.push(todoItem)
   console.log(todoItem.id)
   renderTask(todoItem)
+  saveLocal()
   clearInput()
 })
 
@@ -24,8 +25,6 @@ class Todo {
     this.task = task
   }
 }
-
-// display the data
 
 function renderTask (todoItem) {
   const todo = document.createElement('div')
@@ -55,18 +54,40 @@ function clearInput () {
 function removeItem () {
   list.addEventListener('click', (e) => {
     if (e.target.classList.contains('delete')) {
-      todoArray.splice((e.target.previousElementSibling.id),1)
-      e.target.parentElement.remove()
-      console.log('removed')
-      checkCompleteditems()
+      console.log("responding to click")
+      console.log(e.target.previousElementSibling.id)
+      //iterate trough todo array
+      for (let i=0; i<todoArray.length; i++){
+        // console.log(`${i} = ${todoArray[i].id}`)
+        // console.log(`id = ${e.target.previousElementSibling.id}`)
+        // check if element id = Todo.id
+        if (todoArray[i].id === parseInt(e.target.previousElementSibling.id)){
+          todoArray.splice(i,1)
+          e.target.parentElement.remove()
+          console.log('removed')
+          checkCompleteditems()
+          saveLocal()
+        }
+      }
     }
   })
   completed.addEventListener('click', (e) => {
     if (e.target.classList.contains('delete')) {
-      todoArray.splice((e.target.previousElementSibling.id),1)
-      e.target.parentElement.remove()
-      console.log('removed')
-      checkCompleteditems()
+      console.log("responding to click")
+      console.log(e.target.previousElementSibling.id)
+      //iterate trough todo array
+      for (let i=0; i<todoArray.length; i++){
+        // console.log(`${i} = ${todoArray[i].id}`)
+        // console.log(`id = ${e.target.previousElementSibling.id}`)
+        // check if element id = Todo.id
+        if (todoArray[i].id === parseInt(e.target.previousElementSibling.id)){
+          todoArray.splice(i,1)
+          e.target.parentElement.remove()
+          console.log('removed')
+          checkCompleteditems()
+          saveLocal()
+        }
+      }
     }
   })
 }
@@ -112,6 +133,33 @@ function checkCompleteditems() {
   }
 }
 
+function showSample(){
+  for(todo of todoArray){
+    renderTask(todo)
+  }
+}
+
 removeItem()
 checkItem ()
 checkItemCompleted()
+getLocal()
+showSample()
+
+function saveLocal(){
+    localStorage.setItem('todo', JSON.stringify(todoArray))
+}
+
+function getLocal(){
+
+  if( JSON.parse(localStorage.getItem("todo")) !== null){
+    let newArray = JSON.parse(localStorage.getItem("todo"))
+    console.log(newArray)
+    for (todo of newArray){
+      const todoItem = new Todo(todo.id, todo.task)
+      todoArray.push(todoItem)
+    }
+  } else {
+    todoArray.push(new Todo(0, 'I am a sample task, click the checkbox to complete and the "x" to delete'))
+  }
+}
+
