@@ -13,7 +13,6 @@ form.addEventListener('submit', (e) => {
   const todoItem = new Todo(id, input.value)
   id++
   todoArray.push(todoItem)
-  console.log(todoItem.id)
   renderTask(todoItem)
   saveLocal()
   clearInput()
@@ -54,8 +53,6 @@ function clearInput () {
 function removeItem () {
   list.addEventListener('click', (e) => {
     if (e.target.classList.contains('delete')) {
-      console.log("responding to click")
-      console.log(e.target.previousElementSibling.id)
       //iterate trough todo array
       for (let i=0; i<todoArray.length; i++){
         // console.log(`${i} = ${todoArray[i].id}`)
@@ -64,7 +61,6 @@ function removeItem () {
         if (todoArray[i].id === parseInt(e.target.previousElementSibling.id)){
           todoArray.splice(i,1)
           e.target.parentElement.remove()
-          console.log('removed')
           checkCompleteditems()
           saveLocal()
         }
@@ -83,7 +79,6 @@ function removeItem () {
         if (todoArray[i].id === parseInt(e.target.previousElementSibling.id)){
           todoArray.splice(i,1)
           e.target.parentElement.remove()
-          console.log('removed')
           checkCompleteditems()
           saveLocal()
         }
@@ -153,7 +148,6 @@ function getLocal(){
 
   if( JSON.parse(localStorage.getItem("todo")) !== null){
     let newArray = JSON.parse(localStorage.getItem("todo"))
-    console.log(newArray)
     for (todo of newArray){
       const todoItem = new Todo(todo.id, todo.task)
       todoArray.push(todoItem)
